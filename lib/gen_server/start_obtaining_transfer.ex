@@ -1,4 +1,7 @@
 defmodule GenServer.StartObtainingTransfer do
+  @moduledoc"""
+  module responsible for initializing the application and calling the function responsible for updating transfers
+  """
   use GenServer, restart: :transient
 
   alias Main.TransferGetAndUpdate
@@ -19,6 +22,9 @@ defmodule GenServer.StartObtainingTransfer do
     {:noreply, state}
   end
 
+  @doc"""
+  Function responsible for getting the status of the process in current
+  """
   def get_info_pid(pid), do: Process.info(pid)
 
   defp schedule_work() do
