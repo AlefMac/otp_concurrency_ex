@@ -1,4 +1,7 @@
 defmodule Agent.CurrentTransferState do
+  @moduledoc"""
+  Module responsible for temporarily saving data for some processing
+  """
   use Agent
 
   require Logger
@@ -12,10 +15,13 @@ defmodule Agent.CurrentTransferState do
     Agent.get(module, & &1)
   end
 
-  def get_value_by(step, module) do
+  @doc"""
+  Gets the values according to the received parameter
+  """
+  def get_value_by(param, module) do
     Agent.get(module, fn list ->
       Enum.map(list, fn transfer ->
-        if transfer.etapa == step || transfer.status == step || transfer.valor == step,
+        if transfer.etapa == param || transfer.status == param || transfer.valor == param,
           do: transfer
       end)
       |> Enum.reject(&is_nil/1)
