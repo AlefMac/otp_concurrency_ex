@@ -13,7 +13,6 @@ defmodule GenServer.StartObtainingTransfer do
   end
 
   def init(state) do
-    schedule_work()
     {:ok, state}
   end
 
@@ -27,7 +26,7 @@ defmodule GenServer.StartObtainingTransfer do
   """
   def get_info_pid(pid), do: Process.info(pid)
 
-  defp schedule_work() do
+  def schedule_work() do
     GenServer.cast(self(), :start_process)
   end
 end

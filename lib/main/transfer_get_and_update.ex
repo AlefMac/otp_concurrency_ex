@@ -15,7 +15,6 @@ defmodule Main.TransferGetAndUpdate do
     Logger.info("[#{__MODULE__}] - Começando a atualizar as transferências.")
 
     transfer = Transfers.get_transfer_not_completed()
-
     save_state_in_memory(transfer)
 
     ## other logics to be implemented ...
@@ -26,11 +25,11 @@ defmodule Main.TransferGetAndUpdate do
   """
   def get_transfer_in_memory_by(param),
     do: CurrentTransferState.get_value_by(param, __MODULE__)
-  
+
   @doc"""
   Function responsible for getting the status of the process in current this module
   """
-  def get_status_process(), 
+  def get_status_process(),
     do: StartObtainingTransfer.get_info_pid(self())
 
   defp save_state_in_memory(list_transfer) do

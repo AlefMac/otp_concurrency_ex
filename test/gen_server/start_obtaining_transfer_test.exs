@@ -1,16 +1,24 @@
-defmodule StartObtainingTransferTeste do
-  use ExUnit.Case
+defmodule StartObtainingTransferTest do
+  use ExUnit.Case, async: true
 
   alias GenServer.StartObtainingTransfer
 
-  describe "start_link/1" do
-    test "accepts a measurement count on start" do
-      max_measuruments = 3
-      assert {:ok, pid} = StartObtainingTransfer.start_link(max_measuruments)
-    end
+  setup do
+    {:ok, pid} = StartObtainingTransfer.start_link()
+    %{pid: pid}
   end
 
   describe "schedule_work/0" do
-    
+    test "start service to work" do
+     assert :ok = StartObtainingTransfer.schedule_work
+    end
+  end
+
+  describe "get_info_pid/1" do
+    test "fetch pid info", %{pid: pid} do
+      infos = StartObtainingTransfer.get_info_pid(pid)
+      pid = Keyword.get(infos, :links, "")
+      assert pid == pid
+    end
   end
 end
