@@ -11,7 +11,7 @@ defmodule GenServer.StartObtainingTransfer do
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts)
   end
-  
+
   def init(state) do
     schedule_work()
     {:ok, state}
