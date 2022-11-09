@@ -27,11 +27,26 @@ defmodule Main.TransferGetAndUpdate do
     do: CurrentTransferState.get_value_by(param, __MODULE__)
 
   @doc """
+  Function responsible for delete the transfers that are saved in memory
+  """
+  def delete_transfer_in_list(), 
+    do: CurrentTransferState.delete_transfer(__MODULE__)
+
+  @doc """
+  Get all transfers in memory
+  """
+  def get_all(),
+    do: CurrentTransferState.get_all(__MODULE__)
+
+  @doc """
   Function responsible for getting the status of the process in current this module
   """
   def get_status_process(),
     do: StartObtainingTransfer.get_info_pid(self())
 
+  @doc """
+  Function responsible for forcefully complete the process
+  """
   def break_application_force(),
     do: StartObtainingTransfer.break_application_force(self())
 

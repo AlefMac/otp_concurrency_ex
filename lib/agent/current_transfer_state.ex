@@ -11,8 +11,20 @@ defmodule Agent.CurrentTransferState do
     Logger.info("[#{__MODULE__}] - Processo salvo com sucesso - PID: #{inspect(pid)} ")
   end
 
+  @doc """
+  Get all transfers in memory
+  """
   def get_all(module) do
     Agent.get(module, & &1)
+  end
+
+  @doc """
+  Delete transfer at index 0
+  """
+  def delete_transfer(module) do
+    Agent.update(module, fn list ->
+      List.delete_at(list, 0)
+    end)
   end
 
   @doc """
