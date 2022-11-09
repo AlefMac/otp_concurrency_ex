@@ -1,5 +1,5 @@
 defmodule GenServer.StartObtainingTransfer do
-  @moduledoc"""
+  @moduledoc """
   module responsible for initializing the application and calling the function responsible for updating transfers
   """
   use GenServer, restart: :transient
@@ -13,6 +13,7 @@ defmodule GenServer.StartObtainingTransfer do
   end
 
   def init(state) do
+    schedule_work()
     {:ok, state}
   end
 
@@ -21,10 +22,15 @@ defmodule GenServer.StartObtainingTransfer do
     {:noreply, state}
   end
 
-  @doc"""
+  @doc """
   Function responsible for getting the status of the process in current
   """
   def get_info_pid(pid), do: Process.info(pid)
+
+  @doc """
+  Function responsible for forcefully complete the process
+  """
+  def break_application_force(pid), do: Process.exit(pid, :kill)
 
   def schedule_work() do
     GenServer.cast(self(), :start_process)

@@ -10,7 +10,7 @@ defmodule StartObtainingTransferTest do
 
   describe "schedule_work/0" do
     test "start service to work" do
-     assert :ok = StartObtainingTransfer.schedule_work
+      assert :ok = StartObtainingTransfer.schedule_work()
     end
   end
 

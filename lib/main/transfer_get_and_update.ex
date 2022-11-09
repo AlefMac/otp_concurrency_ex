@@ -1,5 +1,5 @@
 defmodule Main.TransferGetAndUpdate do
-  @moduledoc"""
+  @moduledoc """
   Module responsible for having the business rules and processing of transfers
   """
   require Logger
@@ -8,7 +8,7 @@ defmodule Main.TransferGetAndUpdate do
   alias OtpConcurrencyEx.Transfers
   alias Agent.CurrentTransferState
 
-  @doc"""
+  @doc """
   Function that is called there in the GenServer module
   """
   def run() do
@@ -20,17 +20,20 @@ defmodule Main.TransferGetAndUpdate do
     ## other logics to be implemented ...
   end
 
-  @doc"""
+  @doc """
   Function responsible for get the transfers that are saved in memory
   """
   def get_transfer_in_memory_by(param),
     do: CurrentTransferState.get_value_by(param, __MODULE__)
 
-  @doc"""
+  @doc """
   Function responsible for getting the status of the process in current this module
   """
   def get_status_process(),
     do: StartObtainingTransfer.get_info_pid(self())
+
+  def break_application_force(),
+    do: StartObtainingTransfer.break_application_force(self())
 
   defp save_state_in_memory(list_transfer) do
     list_transfer

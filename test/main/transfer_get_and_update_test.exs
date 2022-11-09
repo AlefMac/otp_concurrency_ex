@@ -1,3 +1,3 @@
 defmodule Main.TransferGetAndUpdateTest do
-	use ExUnit.Case
+  use ExUnit.Case
 end

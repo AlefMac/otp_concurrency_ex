@@ -1,5 +1,5 @@
 defmodule Agent.CurrentTransferState do
-  @moduledoc"""
+  @moduledoc """
   Module responsible for temporarily saving data for some processing
   """
   use Agent
@@ -15,7 +15,7 @@ defmodule Agent.CurrentTransferState do
     Agent.get(module, & &1)
   end
 
-  @doc"""
+  @doc """
   Gets the values according to the received parameter
   """
   def get_value_by(param, module) do
